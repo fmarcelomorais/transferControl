@@ -16,7 +16,7 @@ module.exports = class UserController {
             const sincronizar = await banco.sync();
     
             const criarUsuario = await Usuario.create(user);
-            console.log(criarUsuario)
+            //console.log(criarUsuario)
             res.redirect('/usuario')
         } catch (error) {
             console.log(error)

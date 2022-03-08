@@ -27,7 +27,7 @@ module.exports = class DestinoController {
             const destinos = await Destino.findAll({raw:true});
             /* destino.forEach(destino => console.log(`------DADOS------\nNome: ${destino.nome}\nSigla: ${destino.sigla}\n--------`)) */
             res.render('destinos/destinos', {destinos})
-            return destinos
+            
         } catch (error) {
             console.log(error)
         }

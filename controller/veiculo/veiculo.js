@@ -15,11 +15,9 @@ module.exports = class VehicleController{
             descricao: req.body.descricao,
         }
         try {
-            const sincronizar = await banco.sync();
-            console.log(sincronizar)
-            
+            const sincronizar = await banco.sync();            
             const criarVeiculo = await Veiculo.create(veiculo);
-            console.log(criarVeiculo)
+            
             res.redirect('/veiculo')
         } catch (error) {
             console.log(error)
