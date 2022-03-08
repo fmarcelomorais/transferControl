@@ -14,9 +14,13 @@
 
 ### Como testar:
 
-1 - baixa o projeto ou clona
-2 - npm i
-3 - abre um terminal na pasta do projeto
-4 - npm start
+>1 - baixa o projeto ou clona
 
-5 - usuario master: master@master.com - senha: 123456
+>2 - npm i
+
+>3 - abre um terminal na pasta do projeto
+
+>4 - npm start
+
+>5 - usuario master: master@master.com - senha: 123456
+
