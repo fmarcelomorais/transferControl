@@ -1,0 +1,60 @@
+body{
+    height: 100vh;
+
+}
+
+
+main{
+    display: flex; 
+    flex-direction: column;
+   
+}
+
+.login{     
+    margin: 8em auto;
+    padding: 50px;
+    border: 1px solid #c2c2c2;
+    border-radius: 2%;
+    box-shadow: 5px 10px 5px #ccc;
+}
+footer{
+   
+    margin-top: 20px;
+    text-align: center;
+  
+}
+footer h2{
+    font-size: 1.5rem;
+    
+}
+.rodape{
+    padding: 20px;
+    text-align: center;
+}
+
+.usuarios{    
+    height: 80%;
+    
+    
+}
+
+
+.usuarios ul{   
+    margin-top: 5px;
+    
+    
+}
+.usuarios ul li{   
+    list-style: none;
+
+    
+  
+}
+.action{
+    display: flex;
+}
+.action form{
+   
+    margin-left: 20px;
+}
+

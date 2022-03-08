@@ -1,0 +1,13 @@
+<div class="usuario">
+    {{#each usuarios}}        
+        <ul>
+           <li><h3>{{this.nome}}</h3></li>
+           <li>{{this.tipo}}</li>
+           <li>{{this.matricula}}</li>
+           <li>{{this.senha}}</li>
+        </ul>
+        <form action="/usuario/delete/{{this.matricula}}" method="post">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
+    {{/each}}
+    </div>

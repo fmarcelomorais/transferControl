@@ -1,0 +1,39 @@
+
+    <div class="container login">
+        
+        <h2>Usuario: {{usuario.matricula}}</h2>
+        <form method="POST" action="/usuario/edite">       
+            <div class="form-group">
+                <label for="inputNome">Seu Nome</label>
+                <input type="text" class="form-control" id="inputNome" aria-describedby="emailHelp"
+                    placeholder="Seu nome" name="nome" value="{{usuario.nome}}">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Endereço de email</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                    placeholder="Seu email" name="email" value="{{usuario.email}}">
+            </div>
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="">Tipo</label>
+                    <select class="custom-select" name="tipo" id="tipo">
+                        <option selected>{{usuario.tipo}}</option>
+                        <option value="admin">Administração</option>
+                        <option value="aluno">Aluno</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                <label for="inputMatricula">Matricula</label>
+                <input type="text" class="form-control" id="matrcula" aria-describedby="emailHelp"
+                    placeholder="Sua matricula" name="matricula" value="{{usuario.matricula}}" readonly >
+            </div>
+            </div>
+            <div class="form-group">
+                <label for="inputSenha">Senha</label>
+                <input type="password" class="form-control" id="inputSenha" placeholder="Senha" name="senha" value="{{usuario.senha}}">
+            </div>
+        <button type="submit" class="btn btn-success bt" >Alterar</button>
+        <a href="/usuario" class="btn btn-warning bt" >Cancelar</a>
+        </form>
+
+    </div>

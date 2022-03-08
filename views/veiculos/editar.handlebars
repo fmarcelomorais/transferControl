@@ -1,0 +1,36 @@
+
+    <div class="container login">
+        
+        <h2>Veiculo - Placa: {{veiculo.placa}}</h2>
+         <form method="POST" action="/veiculo/edite">
+            <div class="form-group">
+                <label for="inputNome">Marca</label>
+                <input type="text" class="form-control" id="inputNome" aria-describedby="emailHelp"
+                    placeholder="Marca" name="marca" value="{{veiculo.marca}}">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Modelo</label>
+                <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                    placeholder="Modelo" name="modelo" value="{{veiculo.modelo}}">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Placa</label>
+                <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                    placeholder="Placa" name="placa" value="{{veiculo.placa}}">
+            </div>
+            <div class="form-group">
+                <label for="inputMatricula">Lugares</label>
+                <input type="number" class="form-control" id="matrcula" aria-describedby="emailHelp"
+                    placeholder="Quantidade de Lugares" name="lotacao" value="{{veiculo.lotacao}}">
+            </div>
+            <div class="form-group">
+                <label for="inputMatricula">Descrição</label>
+                <input type="text" class="form-control" id="matrcula" aria-describedby="emailHelp"
+                    placeholder="Descrição" name="descricao" value="{{veiculo.descricao}}">
+            </div>
+        <button type="submit" class="btn btn-primary" >Editar</button>
+          <a href="/admin" type="submit" class="btn btn-warning">Cancelar</a>
+            </div>
+            
+        </form>
+    </div>

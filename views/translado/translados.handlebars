@@ -1,0 +1,27 @@
+<div class="container">
+    <a href="/admin">Voltar</a>
+    <hr>
+    <h1>Todos os Translados</h1>
+    <div class="usuarios">
+      {{#each translados}}
+      <input type="hidden" name="id" value="{{this.id}}">        
+        <ul>
+           <li><h3>{{this.dataSaida}}</h3></li>
+           <li>{{this.turno}}</li>
+           <li>{{this.destino}}</li>
+           <li>{{this.veiculo}}</li>
+           <li>{{this.matriculaAluno}}</li>
+        </ul>
+        <div class="action">
+        <form action="/translado/delete/{{this.id}}" method="post">
+            <button type="submit" class="btn btn-danger">Excluir</button>
+        </form>
+        <form action="/translado/editar/{{this.matriculaAluno}}">
+            <button type="submit" class="btn btn-warning">Editar</button>
+        </form>
+        </div>
+            
+    {{/each}}
+    </div>
+
+</div>
