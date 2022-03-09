@@ -4,6 +4,7 @@
     <h1>Todos os Translados</h1>
     <div class="usuarios">
       {{#each translados}}
+      <h3># {{this.id}}</h3>
       <input type="hidden" name="id" value="{{this.id}}">        
         <ul>
            <li><h3>{{this.dataSaida}}</h3></li>
@@ -19,6 +20,7 @@
         <form action="/translado/editar/{{this.matriculaAluno}}">
             <button type="submit" class="btn btn-warning">Editar</button>
         </form>
+        <hr>
         </div>
             
     {{/each}}
