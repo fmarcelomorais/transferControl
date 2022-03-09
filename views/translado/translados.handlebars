@@ -1,6 +1,7 @@
 <div class="container">
     <a href="/admin">Voltar</a>
     <hr>
+    <br>
     <h1>Todos os Translados</h1>
     <div class="usuarios">
       {{#each translados}}
@@ -20,9 +21,9 @@
         <form action="/translado/editar/{{this.matriculaAluno}}">
             <button type="submit" class="btn btn-warning">Editar</button>
         </form>
-        <hr>
+      
         </div>
-            
+           <hr>   
     {{/each}}
     </div>
 
