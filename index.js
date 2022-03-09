@@ -19,7 +19,7 @@ const rotaInicial = require('./routes/rotaInicial')
 const rotasUsuario = require('./routes/usuarioRouter')
 const rotasVeiculo = require('./routes/veiculosRouter')
 const rotasDestino = require('./routes/destinosRouter')
-const rotasTranslado = require('./routes/TransladosRouter')
+const rotasTranslado = require('./routes/transladosRouter')
 
 
 // RECEBER DADOS ATRAVÉS DE REQUISIÇÃO
