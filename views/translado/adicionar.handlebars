@@ -1,52 +1,57 @@
 <main>
-    <div class="login">
-        <h2>Solicitar Translado</h2>
-        <form method="POST" action="/translado/add">
-            <div class="form-group">
-                <label for="inputNome">Data Desejada</label>
-                <input type="date" class="form-control" id="inputNome" aria-describedby="emailHelp" placeholder="Marca"
-                    name="data" required>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail">Turno</label>
-                <select class="form-control" name="turno" id="turno">
-                    <option selected>Selecione</option>
-                    <option>Manhã</option>
-                    <option>Tarde</option>
-                    <option>Noite</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail">Veiculo</label>
-                <select class="form-control" name="placa" id="placa">
-                    <option selected>Selecione</option>
-                    {{#each veiculo}}
-                    {{#if this.lotado}}
-                    <option disabled>{{this.modelo}} - Lotado</option>
-                    {{else}}
-                    <option value="{{this.placa}}">{{this.modelo}}</option>
-                    {{/if}}
-                    {{/each}}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inputEmail">Destino</label>
-                <select class="form-control" name="destino" id="destino">
-                    <option selected>Selecione</option>
-                    {{#each destino}}
-                    <option>{{this.nome}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="inputNome">Matricula</label>
-                <input type="number" class="form-control" id="inputNome" aria-describedby="emailHelp"
-                    placeholder="Matricula" name="matricula" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-            <a href="/aluno" type="submit" class="btn btn-warning">Cancelar</a>
-    </div>
+    <div class="container">
 
-    </form>
+        <a href="/aluno">Voltar</a>
+        <hr>
+        <div class="login">
+            <h2>Solicitar Translado</h2>
+            <form method="POST" action="/translado/add">
+                <div class="form-group">
+                    <label for="inputNome">Data Desejada</label>
+                    <input type="date" class="form-control" id="inputNome" aria-describedby="emailHelp"
+                        placeholder="Marca" name="data" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Turno</label>
+                    <select class="form-control" name="turno" id="turno">
+                        <option selected>Selecione</option>
+                        <option>Manhã</option>
+                        <option>Tarde</option>
+                        <option>Noite</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Veiculo</label>
+                    <select class="form-control" name="placa" id="placa">
+                        <option selected>Selecione</option>
+                        {{#each veiculo}}
+                        {{#if this.lotado}}
+                        <option disabled>{{this.modelo}} - Lotado</option>
+                        {{else}}
+                        <option value="{{this.placa}}">{{this.modelo}}</option>
+                        {{/if}}
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Destino</label>
+                    <select class="form-control" name="destino" id="destino">
+                        <option selected>Selecione</option>
+                        {{#each destino}}
+                        <option>{{this.nome}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputNome">Matricula</label>
+                    <input type="number" class="form-control" id="inputNome" aria-describedby="emailHelp"
+                        placeholder="Matricula" name="matricula" min="0" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <a href="/aluno" type="submit" class="btn btn-warning">Cancelar</a>
+        </div>
+
+        </form>
+    </div>
     </div>
 </main>

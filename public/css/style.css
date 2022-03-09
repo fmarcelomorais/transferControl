@@ -9,7 +9,11 @@ main{
     flex-direction: column;
    
 }
-
+.linha{
+    border: 2px solid #0f0f0f;
+    display: flex;
+    width: 100%;
+}
 .login{     
     margin: 8em auto;
     padding: 50px;
@@ -30,31 +34,47 @@ footer h2{
 .rodape{
     padding: 20px;
     text-align: center;
+    max-height: 100vh;
 }
 
-.usuarios{    
-    height: 80%;
-    
+.dados{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.usuarios{  
+    display: flex;   
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    padding: 2%;
+    width: 18em;
+    /* height: 18em; */
+    border: 1px solid rgb(236, 236, 236);
+    border-radius: 10px;
+    margin: 5px;
+    box-shadow: 5px 5px 10px #ccc;
     
 }
 
 
-.usuarios ul{   
-    margin-top: 5px;
+.usuarios ul{
+       
+    margin-top: 15px;
     
     
 }
 .usuarios ul li{   
-    list-style: none;
-
-    
+    list-style: none;  
   
 }
 .action{
     display: flex;
 }
 .action form{
-   
+   margin-top: 15px;
     margin-left: 20px;
 }
 

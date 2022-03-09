@@ -1,28 +1,34 @@
 <div class="container">
-    <a href="/usuario/adicionar">Cadastrar</a>
+    <a href="/usuario/adicionar">Cadastrar</a> |
     <a href="/admin">Voltar</a>
     <hr>
-    <h1>Todos os usuarios</h1>
+    <h1>Usuários Cadastrados</h1>
+    <div class="linha"></div>
     <br>
-    <div class="usuarios">
-      {{#each usuarios}}        
-        <ul>
-           <li><h3>{{this.nome}}</h3></li>
-           <li><strong>Email:</strong>  {{this.email}}</li>
-           <li><strong>Tipo usuario:</strong>  {{this.tipo}}</li>
-           <li><strong>Matricula:</strong> {{this.matricula}}</li>
-           <li><strong>Senha:</strong> {{this.senha}}</li>
-        </ul>
-        <div class="action">
-        <form action="/usuario/delete/{{this.matricula}}" method="post">
-            <button type="submit" class="btn btn-danger">Excluir</button>
-        </form>
-        <form action="/usuario/editar/{{this.matricula}}">
-            <button type="submit" class="btn btn-warning">Editar</button>
-        </form>
-        </div>
+    <div class="dados">
+
+        {{#each usuarios}}
+        <div class="usuarios">
+            <h3>{{this.nome}}</h3>
+            <div class="linha"></div>
+            <ul>
+                <li></li>
+                <li><strong>Email:</strong> {{this.email}}</li>
+                <li><strong>Tipo usuario:</strong> {{this.tipo}}</li>
+                <li><strong>Matricula:</strong> {{this.matricula}}</li>
+                <li><strong>Senha:</strong> {{this.senha}}</li>
+            </ul>
+            <div class="action">
+                <form action="/usuario/delete/{{this.matricula}}" method="post">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <form action="/usuario/editar/{{this.matricula}}">
+                    <button type="submit" class="btn btn-warning">Editar</button>
+                </form>
+            </div>
             <hr>
-    {{/each}}
+        </div>
+        {{/each}}
     </div>
 
 </div>

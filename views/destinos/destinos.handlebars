@@ -1,25 +1,29 @@
 <div class="container">
     <a href="/admin">Voltar</a>
     <hr>
-    <h1>Todos os Destinos</h1>
+    <h1>Destinos Cadastrados</h1>
+    <div class="linha"></div>
     <br>
-    <div class="usuarios">
-      {{#each destinos}}        
-            <input type="hidden" name="id" value="{{this.id}}">
-           <h3>{{this.nome}}</h3>
-           <p>{{this.sigla}}</p>
-      
-        <div class="action">
-        <form action="/destino/delete/{{this.id}}" method="post">
-            <button type="submit" class="btn btn-danger">Excluir</button>
-        </form>
-        <form action="/destino/editar/{{this.sigla}}">
-            <button type="submit" class="btn btn-warning">Editar</button>
-        </form>
-        </div>
-        <hr>
-            
-    {{/each}}
-    </div>
+    <div class="dados">
 
+            {{#each destinos}}
+        <div class="usuarios">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <h3>{{this.nome}}</h3>
+            <p>{{this.sigla}}</p>
+
+            <div class="action">
+                <form action="/destino/delete/{{this.id}}" method="post">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <form action="/destino/editar/{{this.sigla}}">
+                    <button type="submit" class="btn btn-warning">Editar</button>
+                </form>
+            </div>
+            <hr>
+
+        </div>
+            {{/each}}
+
+    </div>
 </div>

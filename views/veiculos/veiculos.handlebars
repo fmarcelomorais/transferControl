@@ -1,34 +1,38 @@
 <div class="container">
-    <a href="veiculo/adicionar">Cadastrar</a> |
+   <a href="veiculo/adicionar">Cadastrar</a> |
     <a href="/admin">Voltar</a>
     <hr>
-    <h1>Todos os Veiculos</h1>
+    <h2>Veiculos Cadastrados</h2>
+    <div class="linha"></div>
     <br>
-    <div class="usuarios">
-      {{#each veiculo}}        
-        <ul>
-           <li><h3>{{this.modelo}}</h3></li>
-           <li>Marca: {{this.marca}}</li>
-           <li>Placa: {{this.placa}}</li>
-           {{#if this.lotado}}
-            <li>Não há vagas</li>
-           {{else}}
-           <li>Lugares: {{this.lotacao}}</li>
-           {{/if}}
-            <li>Descrição: {{this.descricao}}</li>
-        </ul>
-           
-        <div class="action">
-        <form action="/veiculo/delete/{{this.placa}}" method="post">
-            <button type="submit" class="btn btn-danger">Excluir</button>
-        </form>
-        <form action="/veiculo/editar/{{this.placa}}">
-            <button type="submit" class="btn btn-warning">Editar</button>
-        </form>
+    <div class="dados">
+
+        {{#each veiculo}}
+        <div class="usuarios">
+            <h3>{{this.modelo}}</h3>
+            <div class="linha"></div>
+            <ul>
+                <li></li>
+                <li>Marca: {{this.marca}}</li>
+                <li>Placa: {{this.placa}}</li>
+                {{#if this.lotado}}
+                <li>Não há vagas</li>
+                {{else}}
+                <li>Lugares: {{this.lotacao}}</li>
+                {{/if}}
+                <li>Descrição: {{this.descricao}}</li>
+            </ul>
+            <div class="action">
+                <form action="/veiculo/delete/{{this.placa}}" method="post">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <form action="/veiculo/editar/{{this.placa}}">
+                    <button type="submit" class="btn btn-warning">Editar</button>
+                </form>
+            </div>
+            <hr>
         </div>
-           <hr>
-            
-    {{/each}}
+        {{/each}}
     </div>
 
 </div>

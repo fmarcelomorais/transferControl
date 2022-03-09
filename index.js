@@ -1,9 +1,18 @@
 const express = require('express');
 const exphbs = require('express-handlebars')
 const app = express();
+const moment = require('moment')
 
 // TEMPLATE ENGINE
-app.engine('handlebars', exphbs.engine())
+
+app.engine('handlebars', exphbs.engine({
+    defaultLayout: 'main',
+    helpers: {
+        formatDate: (date) => {
+            return moment(date).format('DD/MM/YYYY')
+        }
+    }
+}))
 app.set('view engine', 'handlebars')
 
 
