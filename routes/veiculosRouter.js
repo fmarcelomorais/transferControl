@@ -6,6 +6,6 @@ rotaVeiculo.post('/add', veiculos.create)
 rotaVeiculo.get('/', veiculos.readAll)
 rotaVeiculo.get('/editar/:placa', veiculos.readOneVeiculo)
 rotaVeiculo.post('/edite', veiculos.updateVeiculo)
-rotaVeiculo.post('/delete', veiculos.deleteVeiculo)
+rotaVeiculo.post('/delete/:placa', veiculos.deleteVeiculo)
 
 module.exports = rotaVeiculo
