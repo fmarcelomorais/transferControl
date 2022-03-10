@@ -10,6 +10,10 @@ app.engine('handlebars', exphbs.engine({
     helpers: {
         formatDate: (date) => {
             return moment(date).format('DD/MM/YYYY')
+        },
+        formatPlaca: (placa) => {
+            const placaFormatada = placa.replace(/(\d{3})?(\d{4})/, "$1-$2")      
+            return placaFormatada      
         }
     }
 }))
