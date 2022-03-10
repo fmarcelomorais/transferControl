@@ -127,10 +127,24 @@ module.exports = class TransladoController {
     }
 
     static async updateTranslado(req, res) {
-        let dado = await readByKey(key);
-        //dado.dataSaida = '05/15/2022';
-        dado.veiculo = 'DCE-1234'
-        await dado.save();
+        const id = req.body.id
+        const dataSaida = req.body.data
+        const turno = req.body.turno
+        const placa = req.body.placa
+        const destino = req.body.destino
+        const matriculaAluno = req.body.matricula
+
+        const translado = {  
+            id,
+            dataSaida,
+            turno,
+            placa,
+            destino,
+            matriculaAluno,
+        }
+        await Translado.update(translado, {where: {matriculaAluno: matriculaAluno}}); 
+        //await user.save()
+        res.redirect('/translado')   
     }
 
     static async deleteTranslado(req, res) {
@@ -152,8 +166,16 @@ module.exports = class TransladoController {
                 matriculaAluno: matricula
             }
         })
+        const veiculo = await Veiculo.findAll({
+            raw: true
+        });
+        const destino = await Destino.findAll({
+            raw: true
+        });
         res.render('translado/editar', {
-            translados
+            translados,
+            destino,
+            veiculo
         })
     }
 
