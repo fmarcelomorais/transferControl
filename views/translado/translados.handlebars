@@ -10,19 +10,20 @@
         <div class="usuarios">
             <h4>Agendamento nº {{this.id}}</h4>
            <div class="linha"></div>
-            <input type="hidden" name="id" value="{{this.id}}">
-            <h3>Agendado para: {{#formatDate dataSaida}}{{/formatDate}}</h3>
-                         
+            <h3>Agendado para: {{#formatDate dataSaida}}{{/formatDate}}</h3>                         
                <strong>Turno:</strong> {{this.turno}}
                <strong>Destino:</strong> {{this.destino}}
                <strong>Placa do Veiculo:</strong> {{#formatPlaca veiculo}}{{/formatPlaca}}
-               <strong>Matricula do Aluno:</strong> {{this.matriculaAluno}}
+               <strong>Matricula do Aluno:</strong> {{this.matricula}}
+               {{translado.Usuario.nome}}
             <div class="linha"></div>
+            <input type="hidden" name="id" value="{{this.id}}">
+
             <div class="action">
-                <form action="/translado/delete/{{this.id}}" method="post">
+                <form action="/translado/delete/{{this.id}}/{{this.veiculo}}" method="post">
                     <button type="submit" class="btn btn-danger">Excluir</button>
                 </form>
-                <form action="/translado/editar/{{this.matriculaAluno}}">
+                <form action="/translado/editar/{{this.matricula}}">
                     <button type="submit" class="btn btn-warning">Editar</button>
                 </form>
             </div>

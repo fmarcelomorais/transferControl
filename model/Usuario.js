@@ -1,21 +1,22 @@
 const { DataTypes } = require('sequelize');
 const banco = require('../db/conexao');
-//const Translado = require('./Translado')
+const Translado = require('./Translado')
 
 const Usuario = banco.define('Usuario', {
-    id: {
+    /* id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
-        primaryKey: true
-    },
+        //primaryKey: true
+    }, */
     nome:{
         type: DataTypes.STRING,
         allowNull: false,
     },
     matricula:{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        primaryKey: true
     },
     email:{
         type: DataTypes.STRING,
@@ -32,9 +33,11 @@ const Usuario = banco.define('Usuario', {
 
 });
 
-/* Translado.hasOne(Usuario, {
-    constraints: true,
-    foreignKey: Usuario.matricula
-});
- */
+Usuario.hasMany(Translado, {
+    constraint: true, 
+    allowNull: false,
+    foreignKey: 'matricula'
+} )
+//Translado.belongsTo(Usuario)
+
 module.exports = Usuario;

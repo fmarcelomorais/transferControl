@@ -54,6 +54,7 @@ module.exports = class VehicleController{
     }
     
     static async updateVeiculo(req, res){
+      const id = req.body.id 
       const marca = req.body.marca
       const  modelo = req.body.modelo
       const  placa = req.body.placa
@@ -62,6 +63,7 @@ module.exports = class VehicleController{
       const  descricao = req.body.descricao
     
       const veic = {
+          id,
           marca,
           modelo,
           placa,
@@ -69,7 +71,7 @@ module.exports = class VehicleController{
           lotado,
           descricao
       }
-        await Veiculo.update(veic, {where:{ placa : placa}})
+        await Veiculo.update(veic, {where:{ id : id}})
         res.redirect('/veiculo')  
     }
     

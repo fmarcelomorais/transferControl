@@ -15,7 +15,7 @@ module.exports = class UserController {
         try {
             const sincronizar = await banco.sync();
     
-            const criarUsuario = await Usuario.create(user);
+            await Usuario.create(user);
             //console.log(criarUsuario)
             res.redirect('/usuario')
         } catch (error) {
@@ -28,7 +28,7 @@ module.exports = class UserController {
          try {
              const sincronizar = await banco.sync();
              const usuarios = await Usuario.findAll({raw: true});
-            /*  usuarios.forEach(usuario => console.log(`\n------USUARIOS------\nNome: ${usuario.nome}\nMatricula: ${usuario.matricula}\nemail: ${usuario.email}\ntipo: ${usuario.tipo}\nSenha: ${usuario.senha}\n--------\n`)) */
+
              res.render('usuario/usuarios', {usuarios})
             } catch (error) {
                 console.log(error)

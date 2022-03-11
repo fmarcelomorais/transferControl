@@ -2,7 +2,9 @@
     <div class="container login">
         
         <h2>Veiculo - Placa: {{veiculo.placa}}</h2>
+        
          <form method="POST" action="/veiculo/edite">
+         <input type="hidden" name="id" value="{{veiculo.id}}">
             <div class="form-group">
                 <label for="inputNome">Marca</label>
                 <input type="text" class="form-control" id="inputNome" aria-describedby="emailHelp"

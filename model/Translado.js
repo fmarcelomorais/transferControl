@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const banco = require('../db/conexao');
 
-//const Usuario = require('./Usuario')
+const Usuario = require('./Usuario')
 
 const Translado = banco.define('Translado', {
     id: {
@@ -25,14 +25,15 @@ const Translado = banco.define('Translado', {
     veiculo:{
         type: DataTypes.STRING,
         allowNull: false
-    },
+    }/* ,
     matriculaAluno:{
         type: DataTypes.STRING,
         allowNull: false
-    },
+    }, */
 
 });
 
+//Translado.hasOne(Usuario)
 
 
 
