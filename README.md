@@ -14,13 +14,15 @@
 
 ### Como testar:
 
->1 - baixa o projeto ou clona
+> 1 - baixa o projeto ou clona
 
->2 - npm i
+> 2 - npm i
 
->3 - abre um terminal na pasta do projeto
+> 3 - abre um terminal na pasta do projeto
 
->4 - npm start
+> 4 - npm start
 
->5 - usuario master: master@master.com - senha: 123456
+> 5 - usuario master: master@master.com - senha: 123456
+
+> Projeto rodando no ip> http://18.230.70.230:3333/
 
