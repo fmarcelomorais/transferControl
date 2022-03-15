@@ -11,7 +11,7 @@ const Translado = banco.define('Translado', {
         primaryKey: true
     },
     dataSaida:{
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
     },
     turno:{

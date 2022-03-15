@@ -8,6 +8,7 @@ rota.get('/', usuario.readAll)
 rota.get('/editar/:matricula', usuario.getDados)
 rota.post('/edite', usuario.alterar)
 rota.post('/delete/:matricula', usuario.deleteUser)
+rota.post('/pesquisar/:matricula', usuario.readByMatricula)
 
 
 module.exports = rota;

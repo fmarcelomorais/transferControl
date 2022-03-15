@@ -10,12 +10,11 @@
         <div class="usuarios">
             <h4>Agendamento nº {{this.id}}</h4>
            <div class="linha"></div>
-            <h3>Agendado para: {{#formatDate dataSaida}}{{/formatDate}}</h3>                         
+            <h3>Agendado para: {{#formatDate this.dataSaida}}{{/formatDate}}</h3>                         
                <strong>Turno:</strong> {{this.turno}}
                <strong>Destino:</strong> {{this.destino}}
                <strong>Placa do Veiculo:</strong> {{#formatPlaca veiculo}}{{/formatPlaca}}
                <strong>Matricula do Aluno:</strong> {{this.matricula}}
-               {{translado.Usuario.nome}}
             <div class="linha"></div>
             <input type="hidden" name="id" value="{{this.id}}">
 
@@ -25,6 +24,9 @@
                 </form>
                 <form action="/translado/editar/{{this.matricula}}">
                     <button type="submit" class="btn btn-warning">Editar</button>
+                </form>
+                <form action="/translado/verificar/{{this.matricula}}">
+                    <button type="submit" class="btn btn-info">Aluno</button>
                 </form>
             </div>
             <hr>

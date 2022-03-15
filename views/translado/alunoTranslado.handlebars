@@ -1,0 +1,28 @@
+<div class="container">
+    <a href="/translado">Voltar</a>
+    <hr>
+    {{#each aluno}}
+    <h1>{{this.nome}}</h1>
+    <div class="linha"></div>
+    <br>
+    <div class="dados">
+        <div class="usuarios">
+            <h3>Dados do Aluno</h3>
+            <div class="linha"></div>
+            <strong>Email: </strong> <h4>{{this.email}}</h4>
+            <strong>Tipo Cadastro: </strong> <h4>{{this.tipo}}</h4>
+            <strong>Matricula: </strong> <h4>{{this.matricula}}</h4>
+            {{!-- <div class="action">
+                <form action="/usuario/delete/{{this.matricula}}" method="post">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <form action="/usuario/editar/{{this.matricula}}">
+                    <button type="submit" class="btn btn-warning">Editar</button>
+                </form>
+            </div> --}}
+            <hr>
+        </div>
+        {{/each}}
+    </div>
+
+</div>

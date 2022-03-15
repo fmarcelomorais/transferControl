@@ -13,9 +13,128 @@ module.exports = class TransladoController {
         const destino = req.body.destino
         const veiculo = req.body.placa
         const matricula = req.body.matricula
+
+        const veiculos = await Veiculo.findAll({
+            raw: true
+        });
+        const destinos = await Destino.findAll({
+            raw: true
+        });
+                
+        const matriculAluno = await Usuario.findOne({
+            raw: true,
+            where: {
+                matricula: matricula
+            }
+        })
+
+        if (!matriculAluno) {
+            req.flash('matriculaInexistente', 'O Numero de Matricula não está Cadastrada')
+            res.render('translado/adicionar', {
+                destinos,
+                veiculos
+            })
+        }
+
+        const translateExists = await Translado.findOne({
+             raw: true,
+            where:{
+                turno: turno,
+                destino: destino,
+                veiculo: veiculo,
+                matricula: matricula
+            }
+        })
+        
+        if(translateExists){
+            console.log(translateExists)
+            req.flash('translateRegistred', 'Turno, Veiculo e Destino já Solicitado para esse Aluno.')
+            res.render('translado/adicionar', {
+                destinos,
+                veiculos
+            })
+            return
+            
+        }
+
+            try {
+                const translado = {
+                    dataSaida,
+                    turno,
+                    veiculo,
+                    destino,
+                    matricula,
+                    UsuarioMatricula: matricula
+                    
+                }
+    
+                    // cadastra o translado
+                    await banco.sync();
+                    await Translado.create(translado);
+                    req.flash('translateRegiter', 'Solicitação Registrada com Sucesso..')
+                    res.render('translado/adicionar', {
+                        destinos,
+                        veiculos
+                    })
+                  
+                    const veiculo_ = await Veiculo.findOne({
+                        raw: true,
+                        where: {
+                            placa: veiculo
+                        }
+                    })
+    
+                    if (veiculo_.lotacao <= 1) {
+    
+                        veiculo_.lotado = true
+                        await Veiculo.update(veiculo_, {
+                            where: {
+                                placa: veiculo
+                            }
+                        })
+                        veiculo_.lotacao = 0
+                        await Veiculo.update(veiculo_, {
+                            where: {
+                                placa: veiculo
+                            }
+                        })
+    
+                    } else {
+                        veiculo_.lotacao -= 1
+                        await Veiculo.update(veiculo_, {
+                            where: {
+                                placa: veiculo
+                            }
+                        })
+                    }
+    
+                    //res.redirect('/aluno')
+                                    
+                    
+                } catch (error) {
+                    console.log(error)
+                }
+        
         
 
-        const matriculAluno = await Usuario.findOne({
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* const matriculAluno = await Usuario.findOne({
             raw: true,
             where: {
                 matricula: matricula
@@ -32,9 +151,14 @@ module.exports = class TransladoController {
                 turno,
                 veiculo,
                 destino,
-                matricula
+                matricula,
+                UsuarioMatricula: matricula
             }
-            //res.redirect('/translado/adicionar')
+            
+
+
+
+
 
             const veiculo_ = await Veiculo.findOne({
                 raw: true,
@@ -42,24 +166,20 @@ module.exports = class TransladoController {
                     placa: veiculo
                 }
             })
-            /* const sincronizar = await banco.sync();
-            await Translado.create(translado); */
+            
 
             if (veiculo_.lotado) {
                 try {
                     console.log('veiculo_ Lotado')
 
-
-                    /*  const sincronizar = await banco.sync();
-                    const criarTranslado = await Translado.create(translado);
-                    console.log(criarTranslado) */
                     res.redirect('/translado/adicionar')
-                    //res.redirect('/translado/adicionar')
+                 
                 } catch (error) {
                     console.log('olha o erro ' + error)
                 }
             } else {
-                const sincronizar = await banco.sync();
+
+                await banco.sync();
                 await Translado.create(translado);
 
                 if (veiculo_.lotacao <= 1) {
@@ -88,7 +208,7 @@ module.exports = class TransladoController {
                     res.redirect('/aluno')
                 }
             }
-        }
+        } */
 
 
 
@@ -100,6 +220,7 @@ module.exports = class TransladoController {
             const translados = await Translado.findAll({
                raw: true
             });
+            //const user = await Usuario.findOne({where: { }})
             res.render('translado/translados', {
                 translados
             })
@@ -189,7 +310,7 @@ module.exports = class TransladoController {
 
     static async getTranslado(req, res) {
         const matricula = req.params.matricula
-        const sincronizar = await banco.sync()
+        await banco.sync()
         const translados = await Translado.findOne({
             raw: true,
             where: {
@@ -240,24 +361,34 @@ module.exports = class TransladoController {
             console.log(error)
         }
     }
+
     static async getAllVeiculo(req, res) {
         try {
             const sincronizar = await banco.sync();
-            const veiculo = await Veiculo.findAll({
+            const veiculos = await Veiculo.findAll({
                 raw: true
             });
-            const destino = await Destino.findAll({
+            const destinos = await Destino.findAll({
                 raw: true
             });
             //console.log(veiculo)
             //return {veiculo}
             res.render('translado/adicionar', {
-                veiculo,
-                destino
+                veiculos,
+                destinos
             })
         } catch (error) {
             console.log(error)
         }
+    }
+
+    static async alunoTransladado(req, res){
+        const matricula = req.params.matricula
+
+        const aluno = await Usuario.findAll({ raw: true,  where: { matricula: matricula}})
+
+        res.render('translado/alunoTranslado', {aluno})
+        console.log(aluno)
     }
 
 

@@ -38,6 +38,6 @@ Usuario.hasMany(Translado, {
     allowNull: false,
     foreignKey: 'matricula'
 } )
-//Translado.belongsTo(Usuario)
+Translado.belongsTo(Usuario)
 
 module.exports = Usuario;

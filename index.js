@@ -1,5 +1,10 @@
 const express = require('express');
 const exphbs = require('express-handlebars')
+const session = require('express-session')
+const FileStore = require('session-file-store')(session)
+const flash = require('express-flash')
+
+
 const app = express();
 const moment = require('moment')
 
@@ -9,7 +14,8 @@ app.engine('handlebars', exphbs.engine({
     defaultLayout: 'main',
     helpers: {
         formatDate: (date) => {
-            return moment(date).format('DD/MM/YYYY')
+            moment.locale('pt-br');
+            return moment(date).format('L')
         },
         formatPlaca: (placa) => {
             const placaFormatada = placa.replace(/(\d{3})?(\d{4})/, "$1-$2")      
@@ -17,6 +23,7 @@ app.engine('handlebars', exphbs.engine({
         }
     }
 }))
+
 app.set('view engine', 'handlebars')
 
 
@@ -34,13 +41,44 @@ const rotasVeiculo = require('./routes/veiculosRouter')
 const rotasDestino = require('./routes/destinosRouter')
 const rotasTranslado = require('./routes/transladosRouter')
 
+// Session middleware
+app.use(session({
+    name: "session",
+    secret: "marcelomorais",
+    resave: false,
+    saveUninitialized: false,
+    store: new FileStore({
+        logFn: function() {},
+        path: require('path').resolve(require('os').tmpdir(), 'sessions')
+    }),
+    cookie: {
+        secure: false,
+        maxAge: 360000,
+        expires: new Date(Date.now() + 360000)
+    }
+}))
+
+// flash message
+app.use(flash())
+
+// set session to res
+
+app.use((req, res, next) => {
+    if(req.session.userid){
+        res.locals.session = req.session
+    }
+
+    next()
+})
+
 
 // RECEBER DADOS ATRAVÉS DE REQUISIÇÃO
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+
 // MIDDLEWARE uso das rotas
-//Rota de usuarios
+
 app.use('/', rotaLogin)
 app.use('/', rotaInicial)
 app.use('/usuario', rotasUsuario)

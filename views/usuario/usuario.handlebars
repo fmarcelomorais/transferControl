@@ -1,0 +1,64 @@
+<div class="container">
+    <a href="/usuario/adicionar">Cadastrar</a> |
+    <a href="/admin">Voltar</a>
+
+    <hr>
+    <h1>Usuários Cadastrados</h1>
+    <div class="linha"></div>
+    <br>
+{{#if messages.userNot}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{messages.userNot}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div> 
+    {{!-- {{/if}} --}}
+{{!-- {{else}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{messages.userYes}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>  --}}
+    {{/if}}    
+
+    <form action="/usuario/pesquisar/matricula" method="post">
+
+        <div class="input-group mb-3">
+            <input type="number" name="matricula" class="form-control" placeholder="Digite a Matricula"
+                aria-label="Recipient's username" aria-describedby="button-addon2"
+                required>
+            <div class="input-group-append">
+                <button class="btn btn-outline-success" type="submit" id="button-addon2">Pesquisar</button>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="dados">
+        {{#each usuarios}}
+        <div class="usuarios">
+            <h3>{{this.nome}}</h3>
+            <div class="linha"></div>
+            <ul>
+                <li>{{usuarios.Translados}}</li>
+                <li><strong>Email:</strong> {{this.email}}</li>
+                <li><strong>Tipo usuario:</strong> {{this.tipo}}</li>
+                <li><strong>Matricula:</strong> {{this.matricula}}</li>
+                <li><strong>Senha:</strong> {{this.senha}}</li>
+            </ul>
+            <div class="action">
+                <form action="/usuario/delete/{{this.matricula}}" method="post">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+                <form action="/usuario/editar/{{this.matricula}}">
+                    <button type="submit" class="btn btn-warning">Editar</button>
+                </form>
+            </div>
+            <hr>
+        </div>
+        {{/each}}
+    </div>
+
+</div>

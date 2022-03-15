@@ -6,34 +6,60 @@ module.exports = class VehicleController{
 
     static async create(req, res){
 
-        const veiculo = {    
-            marca: req.body.marca,
-            modelo: req.body.modelo,
-            placa: req.body.placa,
-            lotacao: req.body.lotacao,
+        const  {    
+            marca,
+            modelo,
+            placa,
+            lotacao,
+            lotado,
+            descricao
+        } = req.body
+
+      
+
+        const veiculos = await Veiculo.findOne({
+            raw: true,
+            where: {
+                placa: placa
+            }
+        })
+
+        if(veiculos){
+            req.flash('carRegistred', 'Placa já Cadastrada para outro veiculo')
+            res.render('veiculos/adicionar', {veiculos})
+            return
+            console.log(veiculos)
+        }
+        
+        const veiculo ={
+            marca,
+            modelo,
+            placa,
+            lotacao,
             lotado: false,
-            descricao: req.body.descricao,
+            descricao
         }
-        try {
+
+       try {
             const sincronizar = await banco.sync();            
-            const criarVeiculo = await Veiculo.create(veiculo);
-            
+            const criarVeiculo = await Veiculo.create(veiculo);            
             res.redirect('/veiculo')
+
         } catch (error) {
+
             console.log(error)
-        }
+        } 
     }
     
     static async readAll(req, res){
         try {
-            const sincronizar = await banco.sync();
+            await banco.sync();
             const veiculo = await Veiculo.findAll({raw: true});
-            /* veiculo.forEach(veiculo => console.log(`\n------VEICULOS------\nMarca: ${veiculo.marca}\nModelo: ${veiculo.modelo}\nPlaca: ${veiculo.placa}\nLotação: ${veiculo.lotacao}\nLotado: ${veiculo.lotado}\nDescrição: ${veiculo.descricao}\n--------`)) */
             res.render('veiculos/veiculos', {veiculo})
         } catch (error) {
             console.log(error)
         }
-        //res.render('veiculos/veiculos')
+        
     }
     
     static async readByKey(req, res){

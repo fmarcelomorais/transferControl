@@ -1,7 +1,12 @@
 
     <div class="container login">
-        
-        <h2>Usuario: {{usuario.matricula}} - {{usuario.nome}}</h2>
+         <div class="alert alert-info alert-dismissible fade show" role="alert">
+            {{messages.userEdite}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div> 
+        <h2>Matricula: {{usuario.matricula}} - {{usuario.nome}}</h2>
         <form method="POST" action="/usuario/edite">       
             <div class="form-group">
                 <label for="inputNome">Seu Nome</label>
