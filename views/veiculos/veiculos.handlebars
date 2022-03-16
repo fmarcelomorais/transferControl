@@ -10,18 +10,16 @@
         {{#each veiculo}}
         <div class="usuarios">
             <h3>{{this.modelo}}</h3>
-            <div class="linha"></div>
-            <ul>
-                <li></li>
-                <li>Marca: {{this.marca}}</li>
-                <li>Placa: {{#formatPlaca placa}}{{/formatPlaca}}</li>
+            <div class="linha"></div>                            
+              <strong>Marca:</strong> {{this.marca}}
+               <strong>Placa:</strong> {{#formatPlaca placa}}{{/formatPlaca}}
                 {{#if this.lotado}}
-                <li>Não há vagas</li>
+               Não há vagas
                 {{else}}
-                <li>Lugares: {{this.lotacao}}</li>
+               <strong>Lugares:</strong> {{this.lotacao}}
                 {{/if}}
-                <li>Descrição: {{this.descricao}}</li>
-            </ul>
+              <strong>Descrição:</strong>{{this.descricao}}
+            <div class="linha2"></div>
             <div class="action">
                 <form action="/veiculo/delete/{{this.placa}}" method="post">
                     <button type="submit" class="btn btn-danger">Excluir</button>

@@ -41,9 +41,12 @@ module.exports = class VehicleController{
         }
 
        try {
-            const sincronizar = await banco.sync();            
-            const criarVeiculo = await Veiculo.create(veiculo);            
-            res.redirect('/veiculo')
+            await banco.sync();            
+            const criarVeiculo = await Veiculo.create(veiculo); 
+            req.flash('carRegistredSucessfull', 'Veiculo Cadastrado Com Sucesso.')
+            res.render('veiculos/adicionar', {veiculos})
+            return           
+            //res.redirect('/veiculo')
 
         } catch (error) {
 

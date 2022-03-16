@@ -1,18 +1,18 @@
 <div class="container">
     <a href="/destino/adicionar">Cadastrar</a> |
-    <a href="/admin">Voltar</a> 
+    <a href="/admin">Voltar</a>
     <hr>
     <h1>Destinos Cadastrados</h1>
     <div class="linha"></div>
     <br>
     <div class="dados">
 
-            {{#each destinos}}
+        {{#each destinos}}
         <div class="usuarios">
             <input type="hidden" name="id" value="{{this.id}}">
             <h3>{{this.nome}}</h3>
             <p>{{this.sigla}}</p>
-
+            <div class="linha2"></div>
             <div class="action">
                 <form action="/destino/delete/{{this.id}}" method="post">
                     <button type="submit" class="btn btn-danger">Excluir</button>
@@ -24,7 +24,7 @@
             <hr>
 
         </div>
-            {{/each}}
+        {{/each}}
 
     </div>
 </div>

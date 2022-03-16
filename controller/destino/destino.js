@@ -5,18 +5,33 @@ const moment = require('moment')
 module.exports = class DestinoController {
 
     static async create(req, res){
+
+
         const nome = req.body.nome
         const sigla = req.body.sigla
+
         const destino = {                
             nome,
             sigla
         }
+
+        const cidadeCadastrada = await Destino.findOne({
+            raw: true,
+            where: {nome: nome}
+        })
+
+        if(cidadeCadastrada){
+            req.flash('cidadeCadastrada', 'Uma cidade já foi cadastrada com esse nome.')
+            res.render('destinos/adicionar')
+            return
+        }
         try {
-            const sincronizar = await banco.sync();
-            //console.log(sincronizar)    
+
+            await banco.sync();             
             await Destino.create(destino);
-            res.redirect('/destino')
-            //console.log(criarDestino)
+            req.flash('cidadeCadastradaSucesso', 'Destino Cadastrado com Sucesso.')
+            res.render('destinos/adicionar')
+           
         } catch (error) {
             console.log(error)
         }
@@ -26,14 +41,13 @@ module.exports = class DestinoController {
         try {
             const sincronizar = await banco.sync();
             const destinos = await Destino.findAll({raw:true});
-            /* destino.forEach(destino => console.log(`------DADOS------\nNome: ${destino.nome}\nSigla: ${destino.sigla}\n--------`)) */
             res.render('destinos/destinos', {destinos})
             
         } catch (error) {
             console.log(error)
         }
         
-        //res.render('destinos/destinos')
+
     }
     
     static async readByKey(req, res){
@@ -80,11 +94,3 @@ module.exports = class DestinoController {
     }
 }
 
-
-
-
-//create(destino)
-//readAll()
-//readByKey('CE')
-//update('12345')
-//deleteUser('123')

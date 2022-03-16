@@ -14,6 +14,11 @@ main{
     display: flex;
     width: 100%;
 }
+.linha2{
+    border: 1px solid #a0a0a0;
+    display: flex;
+    width: 100%;
+}
 .login{     
     margin: 8em auto;
     padding: 50px;
@@ -40,29 +45,29 @@ footer h2{
 .dados{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content:flex-start;
     align-items: center;
 }
 
 .usuarios{  
     display: flex;   
     flex-direction: column;
-    align-items:flex-start;
     justify-content: center;
-    padding: 2%;
-    width: 18em;
-    /* height: 18em; */
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 15px;
+    margin: 10px;
+    min-width: 25rem;
     border: 1px solid rgb(236, 236, 236);
     border-radius: 10px;
-    margin: 5px;
     box-shadow: 5px 5px 10px #ccc;
     
 }
 
 
-.usuarios ul{
-       
+.usuarios ul{       
     margin-top: 15px;
+    margin-left: 25px;
     
     
 }

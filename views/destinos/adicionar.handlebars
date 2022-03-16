@@ -4,17 +4,34 @@
     <hr>
     <div class="login">
         <h2>Cadastro de Destinos</h2>
+        {{#if messages.cidadeCadastrada}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{messages.cidadeCadastrada}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div> 
+        {{/if}}
+        {{#if messages.cidadeCadastradaSucesso}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{messages.cidadeCadastradaSucesso}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div> 
+        {{/if}}
         <form method="POST" action="/destino/add">
             <div class="form-group">
                 <label for="inputNome">Destino</label>
                 <input type="text" class="form-control" id="inputNome" aria-describedby="emailHelp"
-                    placeholder="Destino" name="nome">
+                    placeholder="Fortaleza" name="nome" required> 
             </div>
             <div class="form-group">
                 <label for="inputEmail">Sigla</label>
                 <input type="text" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                    placeholder="Sigla" name="sigla">
+                    placeholder="CE" name="sigla" required>
             </div>
+            
         <button type="submit" class="btn btn-primary" >Cadastrar</button>
           <a href="/admin" type="submit" class="btn btn-warning">Cancelar</a>
             </div>

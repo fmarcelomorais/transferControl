@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">Turno</label>
-                    <select class="form-control" name="turno" id="turno">
+                    <select class="form-control" name="turno" id="turno" required>
                         <option selected>Selecione</option>
                         <option>Manhã</option>
                         <option>Tarde</option>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">Veiculo</label>
-                    <select class="form-control" name="placa" id="placa">
+                    <select class="form-control" name="placa" id="placa" required>
                         <option selected>Selecione</option>
                         {{#each veiculos}}
                         {{#if this.lotado}}
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inputEmail">Destino</label>
-                    <select class="form-control" name="destino" id="destino">
+                    <select class="form-control" name="destino" id="destino" required>
                         <option selected>Selecione</option>
                         {{#each destinos}}
                         <option>{{this.nome}}</option>

@@ -29,7 +29,7 @@ module.exports = class TransladoController {
         })
 
         if (!matriculAluno) {
-            req.flash('matriculaInexistente', 'O Numero de Matricula não está Cadastrada')
+            req.flash('matriculaInexistente', 'Este Numero de Matricula não está Cadastrado')
             res.render('translado/adicionar', {
                 destinos,
                 veiculos
@@ -39,6 +39,7 @@ module.exports = class TransladoController {
         const translateExists = await Translado.findOne({
              raw: true,
             where:{
+                dataSaida: dataSaida,
                 turno: turno,
                 destino: destino,
                 veiculo: veiculo,
