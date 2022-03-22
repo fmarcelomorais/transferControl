@@ -12,15 +12,7 @@ module.exports = class UserController {
             tipo,
             matricula,
             senha
-        } = req.body
-
-        const user = {
-            nome,
-            email,
-            tipo,
-            matricula,
-            senha
-        }
+        } = req.body 
 
 
         try {
@@ -44,10 +36,21 @@ module.exports = class UserController {
                 return
             } else {
 
-                const sincronizar = await banco.sync();
+                const salt = bcrypt.genSaltSync(10)
+                const hashedPassword = bcrypt.hashSync(senha, salt)
+
+                const user = {
+                    nome,
+                    email,
+                    tipo,
+                    matricula,
+                    senha: hashedPassword
+                }
+                await banco.sync();
                 const newUser = await Usuario.create(user);
                 if (newUser) {
                     req.flash('userRegister', 'Usuário Cadastrado com Sucesso!')
+
                     res.render('usuario/adicionar')
                     return
                 }
@@ -117,13 +120,16 @@ module.exports = class UserController {
         const matricula = req.body.matricula
         const senha = req.body.senha
 
+        const salt = bcrypt.genSaltSync(10)
+        const hashedPassword = bcrypt.hashSync(senha, salt)
+
         const user = {
             id,
             nome,
             email,
             tipo,
             matricula,
-            senha
+            senha: hashedPassword
         }
         await Usuario.update(user, {
             where: {

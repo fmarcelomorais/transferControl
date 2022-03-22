@@ -64,7 +64,7 @@ app.use(flash())
 // set session to res
 
 app.use((req, res, next) => {
-    if(req.session.userid){
+    if(req.session.userMatricula){
         res.locals.session = req.session
     }
 
