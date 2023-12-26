@@ -26,7 +26,7 @@ app.engine('handlebars', exphbs.engine({
 }))
 
 app.set('view engine', 'handlebars')
-app.set('views', './src/views/')
+app.set('views', '/src/views/')
 
 
 app.use(express.static('public'))

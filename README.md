@@ -24,5 +24,5 @@
 
 > 5 - usuario master: master@master.com - senha: 123456
 
-> Projeto rodando no ip> http://18.230.70.230:3333/
+> Url do Projeto> https://transfer-control.vercel.app/
 
