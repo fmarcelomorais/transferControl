@@ -1,7 +1,9 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(process.env.CONECTION_STRING);
+const sequelize = new Sequelize(process.env.CONECTION_STRING, {
+    dialectModule: require('pg')
+  });
 
 /* try {
     sequelize.authenticate();
