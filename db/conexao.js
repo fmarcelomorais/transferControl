@@ -1,9 +1,7 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config();
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './db/database.sqlite'
-});
+const sequelize = new Sequelize(process.env.CONECTION_STRING);
 
 /* try {
     sequelize.authenticate();

@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
+require('dotenv').config();
 
 
 const app = express();
@@ -25,6 +26,7 @@ app.engine('handlebars', exphbs.engine({
 }))
 
 app.set('view engine', 'handlebars')
+app.set('views', './src/views')
 
 
 app.use(express.static('public'))
@@ -34,12 +36,12 @@ const conexao = require('./db/conexao');
 //conexao.sync({force: true}) // limpa o banco
 
 // ROTAS
-const rotaLogin = require('./routes/rotaLogin')
-const rotaInicial = require('./routes/rotaInicial')
-const rotasUsuario = require('./routes/usuarioRouter')
-const rotasVeiculo = require('./routes/veiculosRouter')
-const rotasDestino = require('./routes/destinosRouter')
-const rotasTranslado = require('./routes/transladosRouter')
+const rotaLogin = require('./src/routes/rotaLogin')
+const rotaInicial = require('./src/routes/rotaInicial')
+const rotasUsuario = require('./src/routes/usuarioRouter')
+const rotasVeiculo = require('./src/routes/veiculosRouter')
+const rotasDestino = require('./src/routes/destinosRouter')
+const rotasTranslado = require('./src/routes/transladosRouter')
 
 // Session middleware
 app.use(session({
@@ -89,12 +91,12 @@ app.use('/translado', rotasTranslado)
 
 
 // SERVIDOR LOCAL
-app.listen(3333, () =>{
+app.listen(process.env.PORT, () =>{
     try {
         conexao.authenticate();
         console.log('Banco conectado com sucesso!');
     } catch (error) {
         console.log('Erro ao conectar ao banco' + error);
     }
-    console.log('Servidor rodando na porta: 3333.')
+    console.log(`Servidor rodando na porta: ${process.env.PORT}.`)
 });

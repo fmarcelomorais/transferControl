@@ -1,4 +1,4 @@
-const banco = require('../../db/conexao');
+const banco = require('../../../db/conexao');
 const Translado = require('../../model/Translado');
 const Veiculo = require('../../model/Veiculo');
 const Destino = require('../../model/Destino')

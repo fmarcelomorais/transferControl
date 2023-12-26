@@ -1,4 +1,4 @@
-const banco = require('../../db/conexao');
+const banco = require('../../../db/conexao');
 const Usuario = require('../../model/Usuario');
 const bcrypt = require('bcrypt')
 
@@ -91,7 +91,7 @@ module.exports = class UserController {
             });
 
             if (!usuarios || usuarios.length == 0) {
-                console.log(usuarios)
+                
                 req.flash('userNot', 'Usuário não econtrado.')
                 res.render('usuario/usuario', {
                     usuarios

@@ -1,5 +1,5 @@
 
-const banco = require('../../db/conexao');
+const banco = require('../../../db/conexao');
 const Veiculo = require('../../model/Veiculo');
 
 module.exports = class VehicleController{

@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const banco = require('../../db/conexao');
+const banco = require('../../../db/conexao')
 const Usuario = require('../../model/Usuario');
 
 module.exports = class LoginController {
@@ -32,7 +32,7 @@ module.exports = class LoginController {
             
             req.session.save(() => {
              
-            res.redirect('/admin' ) 
+            res.redirect('/admin') 
                 
             })
           
