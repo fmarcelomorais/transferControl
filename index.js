@@ -26,10 +26,10 @@ app.engine('handlebars', exphbs.engine({
 }))
 
 app.set('view engine', 'handlebars')
-app.set('views', 'views')
+app.set('views', path.join(__dirname, 'views'))
 
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // CONEXÃO COM BANCO
 const conexao = require('./db/conexao');
@@ -41,7 +41,8 @@ const rotaInicial = require('./src/routes/rotaInicial')
 const rotasUsuario = require('./src/routes/usuarioRouter')
 const rotasVeiculo = require('./src/routes/veiculosRouter')
 const rotasDestino = require('./src/routes/destinosRouter')
-const rotasTranslado = require('./src/routes/transladosRouter')
+const rotasTranslado = require('./src/routes/transladosRouter');
+const path = require('path');
 
 // Session middleware
 app.use(session({
