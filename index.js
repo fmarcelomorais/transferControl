@@ -5,7 +5,7 @@ const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
 require('dotenv').config();
 const path = require('path')
-console.log(path.resolve(__dirname, 'views'))
+console.log(path.resolve(__dirname, 'src/views'))
 
 const app = express();
 const moment = require('moment')
@@ -27,7 +27,7 @@ app.engine('handlebars', exphbs.engine({
 }))
 
 app.set('view engine', 'handlebars')
-app.set('views', path.resolve(__dirname, 'views'))
+app.set('views', path.resolve(__dirname, 'src/views'))
 
 
 
