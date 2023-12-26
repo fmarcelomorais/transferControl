@@ -4,7 +4,8 @@ const session = require('express-session')
 const FileStore = require('session-file-store')(session)
 const flash = require('express-flash')
 require('dotenv').config();
-
+const path = require('path')
+console.log(path.resolve(__dirname, 'views'))
 
 const app = express();
 const moment = require('moment')
@@ -26,10 +27,11 @@ app.engine('handlebars', exphbs.engine({
 }))
 
 app.set('view engine', 'handlebars')
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', path.resolve(__dirname, 'views'))
 
 
-app.use(express.static(path.join(__dirname, 'public')))
+
+app.use(express.static(path.resolve(__dirname, 'public')))
 
 // CONEXÃO COM BANCO
 const conexao = require('./db/conexao');
@@ -42,7 +44,6 @@ const rotasUsuario = require('./src/routes/usuarioRouter')
 const rotasVeiculo = require('./src/routes/veiculosRouter')
 const rotasDestino = require('./src/routes/destinosRouter')
 const rotasTranslado = require('./src/routes/transladosRouter');
-const path = require('path');
 
 // Session middleware
 app.use(session({
@@ -52,7 +53,7 @@ app.use(session({
     saveUninitialized: false,
     store: new FileStore({
         logFn: function() {},
-        path: require('path').resolve(require('os').tmpdir(), 'sessions')
+        path: path.resolve(require('os').tmpdir(), 'sessions')
     }),
     cookie: {
         secure: false,

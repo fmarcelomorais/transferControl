@@ -22,6 +22,7 @@
     "handlebars-dateformat": "^1.1.2",
     "moment": "^2.29.1",
     "nodemon": "^2.0.15",
+    "path": "^0.12.7",
     "pg": "^8.11.3",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.17.0",
